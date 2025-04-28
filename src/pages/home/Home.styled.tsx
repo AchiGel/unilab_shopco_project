@@ -5,12 +5,41 @@ export const HomePage = styled.main`
 `;
 
 export const HeroSection = styled.section`
+  position: relative;
+  background-color: #f2f0f1;
   background-image: url("/images/Rectangle.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   height: 663px;
   padding: 103px 100px 116px;
+  &::before {
+    content: url("/images/Vector.png");
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    @media (max-width: 768px) {
+      top: 69%;
+      left: 7%;
+    }
+  }
+  &::after {
+    content: url("/images/Vector-2.png");
+    position: absolute;
+    top: 86px;
+    right: 81px;
+    @media (max-width: 768px) {
+      top: 55%;
+      right: 5%;
+    }
+  }
+  @media (max-width: 768px) {
+    padding: 40px 16px;
+    height: 853px;
+    background-image: url("/images/Rectangle-mob.png");
+    background-position: center 45vh;
+    background-size: contain;
+  }
 `;
 
 export const HeroBrands = styled.section`
@@ -19,6 +48,7 @@ export const HeroBrands = styled.section`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
 `;
 
 export const HeroTextContainer = styled.div`
@@ -33,6 +63,9 @@ export const HeroText = styled.div`
   flex-direction: column;
   gap: 32px;
   max-width: 580px;
+  @media (max-width: 768px) {
+    gap: 24px;
+  }
 `;
 
 export const HeroTextTitle = styled.h1`
@@ -42,6 +75,10 @@ export const HeroTextTitle = styled.h1`
   font-style: normal;
   font-weight: 700;
   line-height: 64px;
+  @media (max-width: 768px) {
+    font-size: 36px;
+    line-height: 34px; /* 94.444% */
+  }
 `;
 
 export const HeroTextPara = styled.p`
@@ -51,6 +88,10 @@ export const HeroTextPara = styled.p`
   font-style: normal;
   font-weight: 400;
   line-height: 22px;
+  @media (max-width: 768px) {
+    font-size: 14px;
+    line-height: 20px;
+  }
 `;
 
 export const HeroTextButton = styled.button`
@@ -68,11 +109,18 @@ export const HeroTextButton = styled.button`
   &:hover {
     cursor: pointer;
   }
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const HeroTextIndicators = styled.div`
   display: grid;
   grid-template-columns: repeat(5, auto);
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(3, auto);
+    margin-inline: 10%;
+  }
 `;
 
 export const HeroIndicator = styled.div`
@@ -87,6 +135,9 @@ export const HeroIndicatorNums = styled.h3`
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  @media (max-width: 768px) {
+    font-size: 24px;
+  }
 `;
 
 export const HeroIndicatorText = styled.span`
@@ -96,6 +147,9 @@ export const HeroIndicatorText = styled.span`
   font-style: normal;
   font-weight: 400;
   line-height: 22px;
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
 `;
 
 export const HeroIndicatorDevider = styled.div`
