@@ -1,4 +1,5 @@
 import { Logo } from "../header/Header.styled";
+import Subscription from "../subscription/Subscription";
 import {
   FooterBottomSection,
   FooterCR,
@@ -34,6 +35,7 @@ const footerLinks = {
 export default function Footer() {
   return (
     <FooterWrapper>
+      <Subscription />
       <FooterUpperSection>
         <FooterLogoContainer>
           <Logo>SHOP.CO</Logo>

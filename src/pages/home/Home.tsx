@@ -1,3 +1,8 @@
+import styled from "styled-components";
+
+const HomePage = styled.main`
+  padding-bottom: 185px;
+`;
 export default function Home() {
-  return <div>Home</div>;
+  return <HomePage>Home</HomePage>;
 }
