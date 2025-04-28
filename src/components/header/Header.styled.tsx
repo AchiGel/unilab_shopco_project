@@ -6,6 +6,51 @@ export const HeaderWrapper = styled.header`
   align-items: center;
   justify-content: space-between;
   position: relative;
+  @media (max-width: 768px) {
+    padding: 23px 16px;
+  }
+`;
+
+export const BurgerAndLogo = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const BurgerMenu = styled.button`
+  border: none;
+  outline: none;
+  width: 24px;
+  height: 24px;
+  background-color: transparent;
+  background-image: url("/images/burger.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  display: none;
+  @media (max-width: 768px) {
+    display: block;
+    margin-right: 16px;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+export const SearchButtonMob = styled.button`
+  border: none;
+  outline: none;
+  width: 24px;
+  height: 24px;
+  background-color: transparent;
+  background-image: url("/images/search-mob.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  display: none;
+  @media (max-width: 768px) {
+    display: block;
+  }
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const Logo = styled.span`
@@ -15,6 +60,16 @@ export const Logo = styled.span`
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  @media (max-width: 768px) {
+    font-size: 25.2px;
+  }
+`;
+
+export const Navigation = styled.nav`
+  display: block;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const LinksList = styled.ul`
@@ -41,6 +96,9 @@ export const SearchForm = styled.form`
   background: #f0f0f0;
   border-radius: 62px;
   padding: 12px 16px;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const SearchBar = styled.input`

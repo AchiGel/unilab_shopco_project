@@ -1,23 +1,30 @@
 import { Link } from "react-router-dom";
 import {
+  BurgerAndLogo,
+  BurgerMenu,
   HeaderWrapper,
   IconsContainer,
   Links,
   LinksList,
   Logo,
+  Navigation,
   SearchBar,
   SearchButton,
+  SearchButtonMob,
   SearchForm,
 } from "./Header.styled";
 
 export default function Header() {
   return (
     <HeaderWrapper>
-      <Link to="/">
-        <Logo>SHOP.CO</Logo>
-      </Link>
+      <BurgerAndLogo>
+        <BurgerMenu />
+        <Link to="/">
+          <Logo>SHOP.CO</Logo>
+        </Link>
+      </BurgerAndLogo>
 
-      <nav>
+      <Navigation>
         <LinksList>
           <Links>
             <Link to="/">Shop</Link>
@@ -32,7 +39,7 @@ export default function Header() {
             <Link to="/">Brands</Link>
           </Links>
         </LinksList>
-      </nav>
+      </Navigation>
 
       <SearchForm action="/search" method="GET">
         <SearchBar
@@ -45,6 +52,7 @@ export default function Header() {
       </SearchForm>
 
       <IconsContainer>
+        <SearchButtonMob />
         <Link to="/cart">
           <img src="/images/cart.png" alt="cart" />
         </Link>
