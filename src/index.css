@@ -1,5 +1,33 @@
+@font-face {
+  font-family: "Satoshi Variable";
+  src: url("/fonts/Satoshi-Variable.woff2") format("woff2"),
+    url("/fonts/Satoshi-Variable.woff") format("woff");
+}
+
+@font-face {
+  font-family: "FSP DEMO - Integral CF Bold";
+  src: url("/fonts/110f69c8a2764bdc93e28fb1adda2499.eot");
+  src: url("/fonts/110f69c8a2764bdc93e28fb1adda2499.eot")
+      format("embedded-opentype"),
+    url("/fonts/110f69c8a2764bdc93e28fb1adda2499.woff2") format("woff2"),
+    url("/fonts/110f69c8a2764bdc93e28fb1adda2499.woff") format("woff"),
+    url("/fonts/110f69c8a2764bdc93e28fb1adda2499.ttf") format("truetype"),
+    url("/fonts/110f69c8a2764bdc93e28fb1adda2499.svg") format("svg");
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+body,
+button,
+a {
+  font-family: "Satoshi Variable";
 }
