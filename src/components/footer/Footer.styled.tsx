@@ -3,6 +3,9 @@ import styled from "styled-components";
 export const FooterWrapper = styled.footer`
   padding: 140px 100px 82px;
   background: #f0f0f0;
+  @media (max-width: 768px) {
+    padding: 190px 17px 77px;
+  }
 `;
 
 export const FooterUpperSection = styled.section`
@@ -10,18 +13,33 @@ export const FooterUpperSection = styled.section`
   grid-template-columns: repeat(5, auto);
   gap: 100px;
   margin-bottom: 50px;
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px 0;
+    margin-bottom: 40px;
+  }
 `;
 
 export const FooterBottomSection = styled.section`
   display: flex;
   justify-content: space-between;
   margin-top: 25px;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-top: 16px;
+  }
 `;
 
 export const FooterLogoContainer = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 248px;
+  @media (max-width: 768px) {
+    grid-column: 1 / -1;
+    max-width: 100%;
+  }
 `;
 
 export const FooterLogoContainerPara = styled.p`
@@ -32,16 +50,26 @@ export const FooterLogoContainerPara = styled.p`
   font-style: normal;
   font-weight: 400;
   line-height: 22px;
+  @media (max-width: 768px) {
+    margin-top: 14px;
+    line-height: 20px;
+  }
 `;
 
 export const FooterLogoContainerIcons = styled.div`
   margin-top: 35px;
+  @media (max-width: 768px) {
+    margin-top: 20px;
+  }
 `;
 
 export const FooterLinks = styled.div`
   display: flex;
   flex-direction: column;
   gap: 26px;
+  @media (max-width: 768px) {
+    gap: 16px;
+  }
 `;
 
 export const FooterLinksTitles = styled.h2`
@@ -53,6 +81,9 @@ export const FooterLinksTitles = styled.h2`
   line-height: 18px;
   letter-spacing: 3px;
   text-transform: uppercase;
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 export const FooterLinksList = styled.ul`
@@ -60,6 +91,9 @@ export const FooterLinksList = styled.ul`
   flex-direction: column;
   gap: 20px;
   list-style: none;
+  @media (max-width: 768px) {
+    gap: 18px;
+  }
 `;
 
 export const FooterLinksLi = styled.li`
@@ -69,6 +103,10 @@ export const FooterLinksLi = styled.li`
   font-style: normal;
   font-weight: 400;
   line-height: 19px;
+  @media (max-width: 768px) {
+    font-size: 14px;
+    line-height: 16px;
+  }
 `;
 
 export const FooterDevider = styled.hr`
