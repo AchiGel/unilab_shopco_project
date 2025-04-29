@@ -25,7 +25,7 @@ export default function LogIn() {
           <SignUpPageFormTitle>Welcome Back</SignUpPageFormTitle>
           <SignUpPageFormPara>
             Don’t have an account?{" "}
-            <Link to="signUp">
+            <Link to="/signUp">
               <SignUpPageFormLink>Sign Up</SignUpPageFormLink>
             </Link>
           </SignUpPageFormPara>
