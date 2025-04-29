@@ -7,6 +7,10 @@ export const TopBarContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  @media (max-width: 768px) {
+    padding: 9px 0;
+    justify-content: center;
+  }
 `;
 
 export const TopBarText = styled.p`
@@ -16,6 +20,9 @@ export const TopBarText = styled.p`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
 `;
 
 export const TopBarLink = styled.span`
@@ -29,6 +36,9 @@ export const TopBarLink = styled.span`
   text-decoration-thickness: auto;
   text-underline-offset: auto;
   text-underline-position: from-font;
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
 `;
 
 export const TopBarClose = styled.button`
@@ -41,6 +51,9 @@ export const TopBarClose = styled.button`
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  @media (max-width: 768px) {
+    display: none;
+  }
   &:hover {
     cursor: pointer;
   }

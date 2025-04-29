@@ -49,6 +49,11 @@ export const HeroBrands = styled.section`
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
+  @media (max-width: 768px) {
+    padding: 40px 16px;
+    gap: 34px;
+    justify-content: center;
+  }
 `;
 
 export const HeroTextContainer = styled.div`
