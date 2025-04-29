@@ -5,13 +5,20 @@ export const SignUpPageLayout = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  @media (max-width: 768px) {
+    padding: 10% 10% 200px 10%;
+  }
 `;
 
 export const SignUpPageContainer = styled.div`
-  min-width: 556px;
+  width: 100%;
+  max-width: 556px;
   display: flex;
   flex-direction: column;
   gap: 100px;
+  @media (max-width: 768px) {
+    gap: 50px;
+  }
 `;
 
 export const SignUpPageForm = styled.form`
@@ -59,6 +66,9 @@ export const InputsContainer = styled.div`
 export const UpperInputsContainer = styled.div`
   display: flex;
   gap: 30px;
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+  }
 `;
 
 export const MiddleInputsContainer = styled.div`

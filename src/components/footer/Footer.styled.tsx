@@ -14,6 +14,9 @@ export const FooterUpperSection = styled.section`
   grid-template-columns: repeat(5, auto);
   gap: 100px;
   margin-bottom: 50px;
+  @media (max-width: 1024px) {
+    gap: 10px;
+  }
   @media (max-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
     gap: 24px 0;
