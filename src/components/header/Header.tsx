@@ -13,12 +13,17 @@ import {
   SearchButtonMob,
   SearchForm,
 } from "./Header.styled";
+import BurgerMenuNav from "../burgerMenu/BurgerMenuNav";
+import { useState } from "react";
 
 export default function Header() {
+  const [burgerOpen, setBurgerOpen] = useState(false);
   return (
     <HeaderWrapper>
+      {burgerOpen && <BurgerMenuNav setBurgerOpen={setBurgerOpen} />}
+
       <BurgerAndLogo>
-        <BurgerMenu />
+        <BurgerMenu onClick={() => setBurgerOpen(!burgerOpen)} />
         <Link to="/">
           <Logo>SHOP.CO</Logo>
         </Link>

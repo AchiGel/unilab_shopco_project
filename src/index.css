@@ -31,3 +31,7 @@ button,
 a {
   font-family: "Satoshi Variable";
 }
+
+ul {
+  list-style: none;
+}
