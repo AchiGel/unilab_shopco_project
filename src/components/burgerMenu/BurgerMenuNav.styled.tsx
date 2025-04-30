@@ -12,6 +12,9 @@ export const BurgerMenuNavLayout = styled.div`
   gap: 72px;
   min-width: 275px;
   height: 100vh;
+  @media (min-width: 768px) {
+    display: none;
+  }
 `;
 
 export const BurgerMenuClose = styled.button`

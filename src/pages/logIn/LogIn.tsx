@@ -16,8 +16,24 @@ import {
   ConfirmWithSystemButton,
 } from "../signUp/SignUp.styled";
 import { ForgotPass } from "./Login.styled";
+import { useForm } from "react-hook-form";
+
+type LogInFormValues = {
+  email: string;
+  password: string;
+};
 
 export default function LogIn() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LogInFormValues>();
+
+  const onSubmit = (data: LogInFormValues) => {
+    console.log("Login Form data:", data);
+  };
+
   return (
     <SignUpPageLayout>
       <SignUpPageContainer>
@@ -30,32 +46,54 @@ export default function LogIn() {
             </Link>
           </SignUpPageFormPara>
         </SignUpPageFormTitleCont>
-        <SignUpPageForm>
+        <SignUpPageForm onSubmit={handleSubmit(onSubmit)}>
           <InputsContainer>
             <MiddleInputsContainer>
-              <CustomInput type="email" name="" id="" placeholder="Email" />
+              <CustomInput
+                type="email"
+                placeholder="Email"
+                {...register("email", {
+                  required: "Email is required",
+                  pattern: {
+                    value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
+                    message: "Invalid email",
+                  },
+                })}
+              />
+              {errors.email?.message}
               <CustomInput
                 type="password"
-                name=""
-                id=""
                 placeholder="Password"
+                {...register("password", {
+                  required: "Password is required",
+                  minLength: { value: 6, message: "Min 6 characters" },
+                })}
               />
+              {errors.password?.message}
             </MiddleInputsContainer>
             <ForgotPass>
               <p>Forgot Password</p>
             </ForgotPass>
           </InputsContainer>
-          <ConfirmButton>Login</ConfirmButton>
+          <ConfirmButton type="submit">Login</ConfirmButton>
           <OrDevider>
             <OrHr />
             or
             <OrHr />
           </OrDevider>
           <MiddleInputsContainer>
-            <ConfirmWithSystemButton $image="Google_Original.png">
+            <ConfirmWithSystemButton
+              type="button"
+              onClick={(e) => e.preventDefault}
+              $image="Google_Original.png"
+            >
               Continue with Google
             </ConfirmWithSystemButton>
-            <ConfirmWithSystemButton $image="Apple_Original.png">
+            <ConfirmWithSystemButton
+              type="button"
+              onClick={(e) => e.preventDefault}
+              $image="Apple_Original.png"
+            >
               Continue with Apple
             </ConfirmWithSystemButton>
           </MiddleInputsContainer>
