@@ -50,3 +50,41 @@ export const ViewAllButton = styled.button`
     cursor: pointer;
   }
 `;
+
+export const ProductsContainer = styled.section`
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+`;
+
+export const ProductCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8.26px;
+`;
+
+export const ProductName = styled.h3`
+  color: #000;
+  font-family: "Satoshi Variable";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+`;
+
+export const ProductPrice = styled.h4`
+  color: #000;
+  font-family: "Satoshi Variable";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+`;
+
+export const ProductImage = styled.div`
+  height: 325px;
+  border-radius: 25px;
+  overflow: hidden;
+  margin-bottom: 7px;
+`;

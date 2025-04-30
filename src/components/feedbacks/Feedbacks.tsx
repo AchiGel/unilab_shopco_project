@@ -30,8 +30,6 @@ export default function Feedbacks() {
     queryFn: getAllFeedbacks,
   });
 
-  console.log(feedbacks);
-
   return (
     <FeedbacksSection>
       <SectionTitle>OUR HAPPY CUSTOMERS</SectionTitle>
