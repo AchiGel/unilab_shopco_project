@@ -14,6 +14,8 @@ import {
   OrDevider,
   OrHr,
   ConfirmWithSystemButton,
+  ErrorWrapperCont,
+  ErrorMessage,
 } from "../signUp/SignUp.styled";
 import { ForgotPass } from "./Login.styled";
 import { useForm } from "react-hook-form";
@@ -49,27 +51,31 @@ export default function LogIn() {
         <SignUpPageForm onSubmit={handleSubmit(onSubmit)}>
           <InputsContainer>
             <MiddleInputsContainer>
-              <CustomInput
-                type="email"
-                placeholder="Email"
-                {...register("email", {
-                  required: "Email is required",
-                  pattern: {
-                    value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
-                    message: "Invalid email",
-                  },
-                })}
-              />
-              {errors.email?.message}
-              <CustomInput
-                type="password"
-                placeholder="Password"
-                {...register("password", {
-                  required: "Password is required",
-                  minLength: { value: 6, message: "Min 6 characters" },
-                })}
-              />
-              {errors.password?.message}
+              <ErrorWrapperCont>
+                <CustomInput
+                  type="email"
+                  placeholder="Email"
+                  {...register("email", {
+                    required: "Email is required",
+                    pattern: {
+                      value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
+                      message: "Invalid email",
+                    },
+                  })}
+                />
+                <ErrorMessage>{errors.email?.message}</ErrorMessage>
+              </ErrorWrapperCont>
+              <ErrorWrapperCont>
+                <CustomInput
+                  type="password"
+                  placeholder="Password"
+                  {...register("password", {
+                    required: "Password is required",
+                    minLength: { value: 6, message: "Min 6 characters" },
+                  })}
+                />
+                <ErrorMessage>{errors.password?.message}</ErrorMessage>
+              </ErrorWrapperCont>
             </MiddleInputsContainer>
             <ForgotPass>
               <p>Forgot Password</p>

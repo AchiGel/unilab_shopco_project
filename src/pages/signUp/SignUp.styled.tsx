@@ -143,3 +143,18 @@ export const ConfirmWithSystemButton = styled.button<{ $image: string }>`
     cursor: pointer;
   }
 `;
+
+export const ErrorWrapperCont = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+`;
+
+export const ErrorMessage = styled.p`
+  color: #ff3300;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+`;

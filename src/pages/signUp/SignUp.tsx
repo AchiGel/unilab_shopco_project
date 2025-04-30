@@ -5,6 +5,8 @@ import {
   ConfirmButton,
   ConfirmWithSystemButton,
   CustomInput,
+  ErrorMessage,
+  ErrorWrapperCont,
   InputsContainer,
   MiddleInputsContainer,
   OrDevider,
@@ -53,57 +55,72 @@ export default function SignUp() {
         <SignUpPageForm onSubmit={handleSubmit(onSubmit)}>
           <InputsContainer>
             <UpperInputsContainer>
-              <CustomInput
-                type="text"
-                placeholder="First Name"
-                {...register("firstName", {
-                  required: "First name is required",
-                })}
-              />
-              {errors.firstName?.message}
-              <CustomInput
-                type="text"
-                placeholder="Last Name"
-                {...register("lastName", { required: "Last name is required" })}
-              />
-              {errors.lastName?.message}
+              <ErrorWrapperCont>
+                <CustomInput
+                  type="text"
+                  placeholder="First Name"
+                  {...register("firstName", {
+                    required: "First name is required",
+                    minLength: { value: 2, message: "Min 2 characters" },
+                  })}
+                />
+                <ErrorMessage>{errors.firstName?.message}</ErrorMessage>
+              </ErrorWrapperCont>
+              <ErrorWrapperCont>
+                <CustomInput
+                  type="text"
+                  placeholder="Last Name"
+                  {...register("lastName", {
+                    required: "Last name is required",
+                    minLength: { value: 2, message: "Min 2 characters" },
+                  })}
+                />
+                <ErrorMessage>{errors.lastName?.message}</ErrorMessage>
+              </ErrorWrapperCont>
             </UpperInputsContainer>
             <MiddleInputsContainer>
-              <CustomInput
-                type="email"
-                placeholder="Email"
-                {...register("email", {
-                  required: "Email is required",
-                  pattern: {
-                    value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
-                    message: "Invalid email",
-                  },
-                })}
-              />
-              {errors.email?.message}
-              <CustomInput
-                type="password"
-                placeholder="Password"
-                {...register("password", {
-                  required: "Password is required",
-                  minLength: { value: 6, message: "Min 6 characters" },
-                })}
-              />
-              {errors.password?.message}
+              <ErrorWrapperCont>
+                <CustomInput
+                  type="email"
+                  placeholder="Email"
+                  {...register("email", {
+                    required: "Email is required",
+                    pattern: {
+                      value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
+                      message: "Invalid email",
+                    },
+                  })}
+                />
+                <ErrorMessage>{errors.email?.message}</ErrorMessage>
+              </ErrorWrapperCont>
+              <ErrorWrapperCont>
+                <CustomInput
+                  type="password"
+                  placeholder="Password"
+                  {...register("password", {
+                    required: "Password is required",
+                    minLength: { value: 6, message: "Min 6 characters" },
+                  })}
+                />
+                <ErrorMessage>{errors.password?.message}</ErrorMessage>
+              </ErrorWrapperCont>
             </MiddleInputsContainer>
-            <BottomInputsContainer>
-              <input
-                type="checkbox"
-                id="agree"
-                {...register("agree", {
-                  required: "You must accept the terms",
-                })}
-              />
-              <label htmlFor="agree">
-                I agree to DopeSass Terms of service and Privacy policy
-              </label>
-              {errors.agree?.message}
-            </BottomInputsContainer>
+
+            <ErrorWrapperCont>
+              <BottomInputsContainer>
+                <input
+                  type="checkbox"
+                  id="agree"
+                  {...register("agree", {
+                    required: "You must accept the terms",
+                  })}
+                />
+                <label htmlFor="agree">
+                  I agree to DopeSass Terms of service and Privacy policy
+                </label>
+              </BottomInputsContainer>
+              <ErrorMessage>{errors.agree?.message}</ErrorMessage>
+            </ErrorWrapperCont>
           </InputsContainer>
           <ConfirmButton type="submit">Create Account</ConfirmButton>
           <OrDevider>
