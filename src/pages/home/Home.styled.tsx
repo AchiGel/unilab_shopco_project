@@ -42,7 +42,7 @@ export const HeroSection = styled.section`
   }
 `;
 
-export const HeroBrands = styled.section`
+export const HeroBrandsSection = styled.section`
   padding: 42px 100px;
   background-color: #000;
   display: flex;

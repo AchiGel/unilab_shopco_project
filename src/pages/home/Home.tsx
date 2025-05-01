@@ -1,13 +1,14 @@
 import BrowseSection from "../../components/browse/BrowseSection";
 import Feedbacks from "../../components/feedbacks/Feedbacks";
 import HeroSectionComponent from "../../components/hero/HeroSectionComponent";
+import HeroBrands from "../../components/heroBrands/HeroBrands";
 import NewArrivals from "../../components/newArrivals/NewArrivals";
 import {
   SectionDevider,
   SectionsWrapper,
 } from "../../components/newArrivals/NewArrivals.styled";
 import TopSelling from "../../components/topSelling/TopSelling";
-import { HeroBrands, HomePage } from "./Home.styled";
+import { HomePage } from "./Home.styled";
 
 export default function Home() {
   const brands = ["versace", "zara", "gucci", "prada", "calvin"];
@@ -15,11 +16,7 @@ export default function Home() {
   return (
     <HomePage>
       <HeroSectionComponent />
-      <HeroBrands>
-        {brands.map((b, index) => (
-          <img key={index} src={`/images/${b}.png`} alt={b} />
-        ))}
-      </HeroBrands>
+      <HeroBrands brands={brands} />
       <SectionsWrapper>
         <NewArrivals />
         <SectionDevider />

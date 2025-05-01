@@ -1,16 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
 import {
   NewArrivalsLayout,
-  ProductCard,
-  ProductImage,
-  ProductName,
-  ProductPrice,
   ProductsContainer,
   SectionTitle,
   ViewAllButton,
 } from "./NewArrivals.styled";
 import { getAllProducts } from "../../services/api";
 import { useState } from "react";
+import { useIsMobile } from "../../hooks/useMediaQuery";
+import ProductCard from "../productCard/ProductCard";
+import { Swiper, SwiperSlide } from "swiper/react";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
+import "swiper/css";
 
 export type ProductTypes = {
   createdAt: string;
@@ -41,31 +43,29 @@ export default function NewArrivals() {
     setIsExpended((prev) => !prev);
   };
 
+  const isMobile = useIsMobile();
+
   return (
     <NewArrivalsLayout>
       <SectionTitle>NEW ARRIVALS</SectionTitle>
       <ProductsContainer>
-        {isLoading
-          ? "Loading..."
-          : error
-          ? "Error Fatching Products"
-          : visibleProducts?.map((p) => (
-              <ProductCard key={p.id}>
-                <ProductImage>
-                  <img
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                    }}
-                    src="/images/product/tshirt1.png"
-                    alt=""
-                  />
-                </ProductImage>
-                <ProductName>{p.name}</ProductName>
-                <ProductPrice>${p.price}</ProductPrice>
-              </ProductCard>
+        {isLoading ? (
+          "Loading..."
+        ) : error ? (
+          "Error Fatching Products"
+        ) : isMobile ? (
+          <Swiper spaceBetween={16} slidesPerView={1.75}>
+            {products?.map((p) => (
+              <SwiperSlide key={p.id}>
+                <ProductCard name={p.name} price={p.price} />
+              </SwiperSlide>
             ))}
+          </Swiper>
+        ) : (
+          visibleProducts?.map((p) => (
+            <ProductCard key={p.id} name={p.name} price={p.price} />
+          ))
+        )}
       </ProductsContainer>
       <ViewAllButton onClick={handleViewAll}>
         {isExpended ? "Show less" : "View All"}

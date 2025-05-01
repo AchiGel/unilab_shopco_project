@@ -32,7 +32,7 @@ export const SectionDevider = styled.hr`
 export const SectionsWrapper = styled.div`
   padding-inline: 100px;
   @media (max-width: 768px) {
-    padding-inline: 16px;
+    padding-inline: 16px 0;
   }
 `;
 
@@ -56,12 +56,18 @@ export const ProductsContainer = styled.section`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
+  @media (max-width: 768px) {
+    display: block;
+  }
 `;
 
-export const ProductCard = styled.div`
+export const ProductCardContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8.26px;
+  @media (max-width: 768px) {
+    width: 200px;
+  }
 `;
 
 export const ProductName = styled.h3`
@@ -87,4 +93,7 @@ export const ProductImage = styled.div`
   border-radius: 25px;
   overflow: hidden;
   margin-bottom: 7px;
+  @media (max-width: 768px) {
+    height: 250px;
+  }
 `;

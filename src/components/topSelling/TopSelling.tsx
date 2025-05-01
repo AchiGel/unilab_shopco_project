@@ -1,10 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { getAllProducts } from "../../services/api";
 import {
-  ProductCard,
-  ProductImage,
-  ProductName,
-  ProductPrice,
   ProductsContainer,
   SectionTitle,
   ViewAllButton,
@@ -12,8 +8,12 @@ import {
 import { TopSellingLayout } from "./TopSelling.styled";
 import { ProductTypes } from "../newArrivals/NewArrivals";
 import { useState } from "react";
+import ProductCard from "../productCard/ProductCard";
+import { useIsMobile } from "../../hooks/useMediaQuery";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 export default function TopSelling() {
+  const isMobile = useIsMobile();
   const {
     data: products,
     error,
@@ -34,27 +34,23 @@ export default function TopSelling() {
     <TopSellingLayout>
       <SectionTitle>top selling</SectionTitle>
       <ProductsContainer>
-        {isLoading
-          ? "Loading..."
-          : error
-          ? "Error Fatching Products"
-          : visibleProducts?.map((p) => (
-              <ProductCard key={p.id}>
-                <ProductImage>
-                  <img
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                    }}
-                    src="/images/product/tshirt1.png"
-                    alt=""
-                  />
-                </ProductImage>
-                <ProductName>{p.name}</ProductName>
-                <ProductPrice>${p.price}</ProductPrice>
-              </ProductCard>
+        {isLoading ? (
+          "Loading..."
+        ) : error ? (
+          "Error Fatching Products"
+        ) : isMobile ? (
+          <Swiper spaceBetween={16} slidesPerView={1.75}>
+            {products?.map((p) => (
+              <SwiperSlide key={p.id}>
+                <ProductCard name={p.name} price={p.price} />
+              </SwiperSlide>
             ))}
+          </Swiper>
+        ) : (
+          visibleProducts?.map((p) => (
+            <ProductCard key={p.id} name={p.name} price={p.price} />
+          ))
+        )}
       </ProductsContainer>
       <ViewAllButton onClick={handleViewAll}>
         {isExpended ? "Show less" : "View All"}
