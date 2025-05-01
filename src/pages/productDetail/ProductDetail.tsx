@@ -4,12 +4,9 @@ import { getSingleProduct } from "../../services/api";
 import { ProductTypes } from "../../components/newArrivals/NewArrivals";
 import {
   DetailsPageWrapper,
-  ProductAddToCart,
-  ProductColors,
   ProductDescription,
   ProductInfo,
   ProductSection,
-  ProductSizes,
   ProductTitle,
 } from "./ProductDetail.styled";
 import {
@@ -18,8 +15,12 @@ import {
   ProductPrice,
   ProductPriceContainer,
   ProductRating,
+  SectionDevider,
 } from "../../components/newArrivals/NewArrivals.styled";
 import ProductGalery from "../../components/productGalery/ProductGalery";
+import ProductColors from "../../components/productColors/ProductColors";
+import ProductSizes from "../../components/productSizes/ProductSizes";
+import ProductAddToCart from "../../components/productAddToCart/ProductAddToCart";
 
 export default function ProductDetail() {
   const { id } = useParams<{ id: string }>();
@@ -47,8 +48,8 @@ export default function ProductDetail() {
           <ProductGalery />
           <ProductInfo>
             <ProductTitle>{product?.name}</ProductTitle>
-            <ProductRating>{product?.rating}/5</ProductRating>
-            <ProductPriceContainer>
+            <ProductRating $page="details">{product?.rating}/5</ProductRating>
+            <ProductPriceContainer $page="details">
               <ProductPrice>${product?.price}</ProductPrice>
               {product?.oldPrice && (
                 <ProductOldPrice>${product?.oldPrice}</ProductOldPrice>
@@ -58,9 +59,12 @@ export default function ProductDetail() {
               )}
             </ProductPriceContainer>
             <ProductDescription>{product?.description}</ProductDescription>
-            <ProductColors></ProductColors>
-            <ProductSizes></ProductSizes>
-            <ProductAddToCart></ProductAddToCart>
+            <SectionDevider />
+            <ProductColors colors={product?.colors} />
+            <SectionDevider />
+            <ProductSizes sizes={product?.sizes} />
+            <SectionDevider />
+            <ProductAddToCart />
           </ProductInfo>
         </ProductSection>
       )}

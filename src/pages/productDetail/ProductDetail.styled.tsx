@@ -31,9 +31,3 @@ export const ProductDescription = styled.p`
   line-height: 22px; /* 137.5% */
   margin-bottom: 24px;
 `;
-
-export const ProductColors = styled.div``;
-
-export const ProductSizes = styled.div``;
-
-export const ProductAddToCart = styled.div``;

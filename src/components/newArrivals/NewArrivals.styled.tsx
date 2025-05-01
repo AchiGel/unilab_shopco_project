@@ -120,14 +120,16 @@ export const ProductImage = styled.div`
   }
 `;
 
-export const ProductRating = styled.div`
+export const ProductRating = styled.div<{ $page?: string }>`
   display: flex;
   align-items: center;
   gap: 13px;
+  margin-bottom: ${(props) => (props.$page ? "14.29px" : "")};
 `;
 
-export const ProductPriceContainer = styled.div`
+export const ProductPriceContainer = styled.div<{ $page?: string }>`
   display: flex;
   align-items: center;
   gap: 10px;
+  margin-bottom: ${(props) => (props.$page ? "20px" : "")};
 `;
