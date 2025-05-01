@@ -8,18 +8,16 @@ export const FeedbacksSection = styled.section`
 `;
 
 export const FeedbacksSwipper = styled.section`
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  overflow: scroll;
   margin-inline: 100px;
+  @media (max-width: 768px) {
+    margin-inline: 16px;
+  }
 `;
 
 export const FeedbackCardLayout = styled.div`
   padding: 28px 32px;
   border-radius: 20px;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  min-width: 400px;
   height: 240px;
 `;
 
@@ -55,4 +53,33 @@ export const FeedbackComment = styled.p`
   font-style: normal;
   font-weight: 400;
   line-height: 22px; /* 137.5% */
+`;
+
+export const ButtonsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 100px;
+  @media (max-width: 768px) {
+    padding-inline: 16px;
+    align-items: flex-end;
+  }
+`;
+
+export const SelectorButtons = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+`;
+
+export const FeedbackSwitchButton = styled.button<{ $next?: boolean }>`
+  border: none;
+  outline: none;
+  width: 24px;
+  height: 24px;
+  background-color: transparent;
+  background-image: url(${(props) => (props.$next ? "/images/arrow-next.png" : "/images/arrow-prev.png")});
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
 `;
