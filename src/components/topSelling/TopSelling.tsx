@@ -42,13 +42,27 @@ export default function TopSelling() {
           <Swiper spaceBetween={16} slidesPerView={1.75}>
             {products?.map((p) => (
               <SwiperSlide key={p.id}>
-                <ProductCard name={p.name} price={p.price} />
+                <ProductCard
+                  key={p.id}
+                  name={p.name}
+                  price={p.price}
+                  oldPrice={p.oldPrice}
+                  discount={p.discount}
+                  rating={p.rating}
+                />
               </SwiperSlide>
             ))}
           </Swiper>
         ) : (
           visibleProducts?.map((p) => (
-            <ProductCard key={p.id} name={p.name} price={p.price} />
+            <ProductCard
+              key={p.id}
+              name={p.name}
+              price={p.price}
+              oldPrice={p.oldPrice}
+              discount={p.discount}
+              rating={p.rating}
+            />
           ))
         )}
       </ProductsContainer>

@@ -24,7 +24,7 @@ const HeroBrands = ({ brands }: { brands: string[] }) => {
       ) : (
         <Swiper
           spaceBetween={20}
-          slidesPerView={"auto"}
+          slidesPerView={5}
           loop={true}
           autoplay={{ delay: 500, disableOnInteraction: false }}
           modules={[Autoplay]}

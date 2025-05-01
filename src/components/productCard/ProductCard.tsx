@@ -1,22 +1,25 @@
+import { ProductTypes } from "../newArrivals/NewArrivals";
 import {
   ProductCardContainer,
+  ProductDiscount,
   ProductImage,
   ProductName,
+  ProductOldPrice,
   ProductPrice,
+  ProductPriceContainer,
+  ProductRating,
 } from "../newArrivals/NewArrivals.styled";
 
 export default function ProductCard({
   name,
   price,
-  $swiper,
-}: {
-  name: string;
-  price: string;
-  $swiper?: boolean;
-}) {
+  oldPrice,
+  discount,
+  rating,
+}: ProductTypes) {
   return (
-    <ProductCardContainer $swiper={$swiper}>
-      <ProductImage $swiper={$swiper}>
+    <ProductCardContainer>
+      <ProductImage>
         <img
           style={{
             width: "100%",
@@ -28,7 +31,14 @@ export default function ProductCard({
         />
       </ProductImage>
       <ProductName>{name}</ProductName>
-      <ProductPrice>${price}</ProductPrice>
+      <ProductRating>
+        <p>{rating}/5</p>
+      </ProductRating>
+      <ProductPriceContainer>
+        <ProductPrice>${price}</ProductPrice>
+        {oldPrice && <ProductOldPrice>${oldPrice}</ProductOldPrice>}
+        {discount && <ProductDiscount>-{discount}%</ProductDiscount>}
+      </ProductPriceContainer>
     </ProductCardContainer>
   );
 }

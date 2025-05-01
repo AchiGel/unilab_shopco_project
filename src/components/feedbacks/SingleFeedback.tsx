@@ -5,7 +5,7 @@ import {
   FeedbackComment,
 } from "./Feedbacks.styled";
 
-import starImage from "../../../public/images/Star.svg";
+import starImage from "/images/Star.svg";
 
 export default function SingleFeedback({
   rating,

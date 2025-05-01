@@ -13,17 +13,18 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
 import "swiper/css";
+import { Link } from "react-router-dom";
 
 export type ProductTypes = {
-  createdAt: string;
+  createdAt?: string;
   name: string;
-  category: string;
-  description: string;
+  category?: string;
+  description?: string;
   price: string;
   oldPrice: string;
   discount: string;
   rating: number;
-  id: string;
+  id?: string;
 };
 
 export default function NewArrivals() {
@@ -57,13 +58,29 @@ export default function NewArrivals() {
           <Swiper spaceBetween={16} slidesPerView={1.75}>
             {products?.map((p) => (
               <SwiperSlide key={p.id}>
-                <ProductCard name={p.name} price={p.price} />
+                <Link to={`/products/${p.id}`}>
+                  <ProductCard
+                    name={p.name}
+                    price={p.price}
+                    oldPrice={p.oldPrice}
+                    discount={p.discount}
+                    rating={p.rating}
+                  />
+                </Link>
               </SwiperSlide>
             ))}
           </Swiper>
         ) : (
           visibleProducts?.map((p) => (
-            <ProductCard key={p.id} name={p.name} price={p.price} />
+            <Link key={p.id} to={`/products/${p.id}`}>
+              <ProductCard
+                name={p.name}
+                price={p.price}
+                oldPrice={p.oldPrice}
+                discount={p.discount}
+                rating={p.rating}
+              />
+            </Link>
           ))
         )}
       </ProductsContainer>

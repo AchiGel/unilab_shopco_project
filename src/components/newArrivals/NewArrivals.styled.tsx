@@ -88,6 +88,28 @@ export const ProductPrice = styled.h4`
   line-height: normal;
 `;
 
+export const ProductOldPrice = styled.h4`
+  color: rgba(0, 0, 0, 0.4);
+  font-family: "Satoshi Variable";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-decoration-line: line-through;
+`;
+
+export const ProductDiscount = styled.span`
+  display: inline-block;
+  padding: 6px 14px;
+  color: #f33;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  border-radius: 62px;
+  background-color: rgba(255, 51, 51, 0.1);
+`;
+
 export const ProductImage = styled.div`
   height: 325px;
   border-radius: 25px;
@@ -96,4 +118,16 @@ export const ProductImage = styled.div`
   @media (max-width: 768px) {
     height: 250px;
   }
+`;
+
+export const ProductRating = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 13px;
+`;
+
+export const ProductPriceContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
 `;
