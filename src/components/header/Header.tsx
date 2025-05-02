@@ -38,7 +38,7 @@ export default function Header() {
             <Link to="/">On Sale</Link>
           </Links>
           <Links>
-            <Link to="/">New Arrivals</Link>
+            <Link to="/reviews">All Reviews</Link>
           </Links>
           <Links>
             <Link to="/">Brands</Link>
