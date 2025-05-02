@@ -11,20 +11,20 @@ import {
 import Home from "./pages/home/Home.tsx";
 import ProductDetail from "./pages/productDetail/ProductDetail.tsx";
 import Review from "./pages/review/Review.tsx";
-import Category from "./pages/category/Category.tsx";
 import SignUp from "./pages/signUp/SignUp.tsx";
 import LogIn from "./pages/logIn/LogIn.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Cart from "./pages/cart/Cart.tsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index element={<Home />} />
       <Route path="/review" element={<Review />} />
-      <Route path="/category" element={<Category />} />
       <Route path="/signUp" element={<SignUp />} />
       <Route path="/logIn" element={<LogIn />} />
       <Route path="/products/:id" element={<ProductDetail />} />
+      <Route path="/cart" element={<Cart />} />
     </Route>
   )
 );
