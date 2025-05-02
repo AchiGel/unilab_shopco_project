@@ -6,6 +6,7 @@ export const HeaderWrapper = styled.header`
   align-items: center;
   justify-content: space-between;
   position: relative;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   @media (max-width: 768px) {
     padding: 23px 16px;
   }

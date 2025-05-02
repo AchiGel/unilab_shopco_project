@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const DetailsPageWrapper = styled.div`
+  margin-top: 70px;
   padding-inline: 100px;
   padding-bottom: 168px;
   @media (max-width: 768px) {
