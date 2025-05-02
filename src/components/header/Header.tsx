@@ -32,16 +32,16 @@ export default function Header() {
       <Navigation>
         <LinksList>
           <Links>
-            <Link to="/">Shop</Link>
+            <Link to="/shop">Shop</Link>
           </Links>
           <Links>
-            <Link to="/">On Sale</Link>
+            <Link to="/shop">On Sale</Link>
           </Links>
           <Links>
             <Link to="/reviews">All Reviews</Link>
           </Links>
           <Links>
-            <Link to="/">Brands</Link>
+            <Link to="/shop">Brands</Link>
           </Links>
         </LinksList>
       </Navigation>

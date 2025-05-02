@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import {
   HeroTextContainer,
   HeroText,
@@ -23,7 +24,9 @@ export default function HeroSectionComponent() {
             designed to bring out your individuality and cater to your sense of
             style.
           </HeroTextPara>
-          <HeroTextButton>Shop Now</HeroTextButton>
+          <Link to="/shop">
+            <HeroTextButton>Shop Now</HeroTextButton>
+          </Link>
         </HeroText>
         <HeroTextIndicators>
           <HeroIndicator>

@@ -15,6 +15,7 @@ import SignUp from "./pages/signUp/SignUp.tsx";
 import LogIn from "./pages/logIn/LogIn.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Cart from "./pages/cart/Cart.tsx";
+import Shop from "./pages/shop/Shop.tsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,6 +26,7 @@ const router = createBrowserRouter(
       <Route path="/logIn" element={<LogIn />} />
       <Route path="/products/:id" element={<ProductDetail />} />
       <Route path="/cart" element={<Cart />} />
+      <Route path="/shop" element={<Shop />} />
     </Route>
   )
 );
