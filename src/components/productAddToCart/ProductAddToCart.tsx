@@ -7,13 +7,13 @@ import {
 } from "./ProductAddToCart.styled";
 
 export default function ProductAddToCart() {
-  const [items, setItems] = useState<number>(0);
+  const [items, setItems] = useState<number>(1);
   return (
     <ProductAddToCartLayout>
       <ProductAddToCartQuantity>
         <ProductAddToCartQuantityButtons
           onClick={() => {
-            if (items === 0) return;
+            if (items === 1) return;
             setItems((prev) => prev - 1);
           }}
         />

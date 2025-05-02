@@ -3,11 +3,17 @@ import styled from "styled-components";
 export const DetailsPageWrapper = styled.div`
   padding-inline: 100px;
   padding-bottom: 168px;
+  @media (max-width: 768px) {
+    padding-inline: 16px;
+  }
 `;
 
 export const ProductSection = styled.section`
   display: flex;
   gap: 40px;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 export const ProductInfo = styled.div``;

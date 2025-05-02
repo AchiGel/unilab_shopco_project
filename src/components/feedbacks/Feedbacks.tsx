@@ -13,12 +13,12 @@ import { SwiperSlide, Swiper } from "swiper/react";
 import { useIsMobile } from "../../hooks/useMediaQuery";
 import { useRef } from "react";
 
-type FeedbackType = {
+export type FeedbackType = {
   createdAt: string;
   name: string;
   comment: string;
   rating: number;
-  productId: string;
+  productId?: string;
   id: string;
 };
 

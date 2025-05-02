@@ -19,6 +19,7 @@ export const ProductAddToCartButton = styled.button`
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  cursor: pointer;
 `;
 
 export const ProductAddToCartQuantity = styled.div`
@@ -50,4 +51,5 @@ export const ProductAddToCartQuantityButtons = styled.button<{
   font-weight: 500;
   line-height: normal;
   background-image: url(${(props) =>props.$plus ? "/images/plus.png" : "/images/minus.png"});
+  cursor: pointer;
 `;

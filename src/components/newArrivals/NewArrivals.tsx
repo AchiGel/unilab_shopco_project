@@ -17,13 +17,13 @@ import { Link } from "react-router-dom";
 
 export type ProductTypes = {
   createdAt?: string;
-  name: string;
+  name?: string;
   category?: string;
   description?: string;
-  price: string;
-  oldPrice: string;
-  discount: string;
-  rating: number;
+  price?: string;
+  oldPrice?: string;
+  discount?: string;
+  rating?: number;
   id?: string;
   sizes?: string[];
   colors?: string[];
