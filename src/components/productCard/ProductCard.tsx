@@ -1,3 +1,4 @@
+import { FeedbackRating } from "../feedbacks/Feedbacks.styled";
 import { ProductTypes } from "../newArrivals/NewArrivals";
 import {
   ProductCardContainer,
@@ -9,6 +10,8 @@ import {
   ProductPriceContainer,
   ProductRating,
 } from "../newArrivals/NewArrivals.styled";
+
+import starImage from "/images/Star.svg";
 
 export default function ProductCard({
   name,
@@ -32,6 +35,12 @@ export default function ProductCard({
       </ProductImage>
       <ProductName>{name}</ProductName>
       <ProductRating>
+        <FeedbackRating>
+          {rating &&
+            [...Array(Math.ceil(rating))].map((_star, i) => (
+              <img key={i} src={starImage} alt="" />
+            ))}
+        </FeedbackRating>
         <p>{rating}/5</p>
       </ProductRating>
       <ProductPriceContainer>

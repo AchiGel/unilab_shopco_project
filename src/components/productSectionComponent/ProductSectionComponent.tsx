@@ -18,6 +18,8 @@ import ProductAddToCart from "../productAddToCart/ProductAddToCart";
 import ProductColors from "../productColors/ProductColors";
 import ProductGalery from "../productGalery/ProductGalery";
 import ProductSizes from "../productSizes/ProductSizes";
+import { FeedbackRating } from "../feedbacks/Feedbacks.styled";
+import starImage from "/images/Star.svg";
 
 export default function ProductSectionComponent({
   name,
@@ -50,7 +52,15 @@ export default function ProductSectionComponent({
       <ProductGalery />
       <ProductInfo>
         <ProductTitle>{name}</ProductTitle>
-        <ProductRating $page="details">{rating}/5</ProductRating>
+        <ProductRating $page="details">
+          <FeedbackRating>
+            {rating &&
+              [...Array(Math.ceil(rating))].map((_star, i) => (
+                <img key={i} src={starImage} alt="" />
+              ))}
+          </FeedbackRating>
+          {rating}/5
+        </ProductRating>
         <ProductPriceContainer $page="details">
           <ProductPrice>${price}</ProductPrice>
           {oldPrice && <ProductOldPrice>${oldPrice}</ProductOldPrice>}

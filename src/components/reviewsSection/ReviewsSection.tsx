@@ -22,6 +22,7 @@ import {
 } from "./ReviewsSection.styled";
 
 import starImage from "/images/Star.svg";
+import { Link } from "react-router-dom";
 
 export default function ReviewsSection({
   reviews,
@@ -76,7 +77,9 @@ export default function ReviewsSection({
             <WriteReviews>
               <FiltrationButton />
               <SortingButton>Latest</SortingButton>
-              <WriteButton>Write a Review</WriteButton>
+              <Link to="/write_review">
+                <WriteButton>Write a Review</WriteButton>
+              </Link>
             </WriteReviews>
           </AllReviews>
           <ReviewsGridContainer>

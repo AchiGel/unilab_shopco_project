@@ -66,7 +66,7 @@ export default function ProductDetail() {
     error: errorMatching,
     isLoading: isLoadingMatching,
   } = useQuery<ProductTypes[]>({
-    queryKey: ["matchedProducts"],
+    queryKey: ["matchedProducts", id],
     queryFn: getSingleProductMatches,
   });
 

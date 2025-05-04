@@ -11,6 +11,7 @@ import { useState } from "react";
 import ProductCard from "../productCard/ProductCard";
 import { useIsMobile } from "../../hooks/useMediaQuery";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Link } from "react-router-dom";
 
 export default function TopSelling() {
   const isMobile = useIsMobile();
@@ -42,27 +43,29 @@ export default function TopSelling() {
           <Swiper spaceBetween={16} slidesPerView={1.75}>
             {products?.map((p) => (
               <SwiperSlide key={p.id}>
-                <ProductCard
-                  key={p.id}
-                  name={p.name}
-                  price={p.price}
-                  oldPrice={p.oldPrice}
-                  discount={p.discount}
-                  rating={p.rating}
-                />
+                <Link key={p.id} to={`/products/${p.id}`}>
+                  <ProductCard
+                    name={p.name}
+                    price={p.price}
+                    oldPrice={p.oldPrice}
+                    discount={p.discount}
+                    rating={p.rating}
+                  />
+                </Link>
               </SwiperSlide>
             ))}
           </Swiper>
         ) : (
           visibleProducts?.map((p) => (
-            <ProductCard
-              key={p.id}
-              name={p.name}
-              price={p.price}
-              oldPrice={p.oldPrice}
-              discount={p.discount}
-              rating={p.rating}
-            />
+            <Link key={p.id} to={`/products/${p.id}`}>
+              <ProductCard
+                name={p.name}
+                price={p.price}
+                oldPrice={p.oldPrice}
+                discount={p.discount}
+                rating={p.rating}
+              />
+            </Link>
           ))
         )}
       </ProductsContainer>

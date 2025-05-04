@@ -16,12 +16,14 @@ import LogIn from "./pages/logIn/LogIn.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Cart from "./pages/cart/Cart.tsx";
 import Shop from "./pages/shop/Shop.tsx";
+import WriteReview from "./pages/writeReview/WriteReview.tsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index element={<Home />} />
       <Route path="/reviews" element={<Review />} />
+      <Route path="/write_review" element={<WriteReview />} />
       <Route path="/signUp" element={<SignUp />} />
       <Route path="/logIn" element={<LogIn />} />
       <Route path="/products/:id" element={<ProductDetail />} />
