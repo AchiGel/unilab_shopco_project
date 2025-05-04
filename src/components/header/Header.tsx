@@ -46,7 +46,7 @@ export default function Header() {
         </LinksList>
       </Navigation>
 
-      <SearchForm action="/search" method="GET">
+      <SearchForm>
         <SearchBar
           type="text"
           name="q"

@@ -1,5 +1,7 @@
+import { useSubscriptionStore } from "../../store/subscriptionStore";
 import { Logo } from "../header/Header.styled";
 import Subscription from "../subscription/Subscription";
+import SuccessModal from "../successModal/SuccessModal";
 import {
   FooterBottomSection,
   FooterCR,
@@ -33,6 +35,12 @@ const footerLinks = {
 };
 
 export default function Footer() {
+  const subscriptionSuccess = useSubscriptionStore(
+    (state) => state.subscriptionSuccess
+  );
+  const setSubscriptionSuccess = useSubscriptionStore(
+    (state) => state.setSubscriptionSuccess
+  );
   return (
     <FooterWrapper>
       <Subscription />
@@ -69,6 +77,9 @@ export default function Footer() {
           <img src="/images/gpay.png" alt="" />
         </div>
       </FooterBottomSection>
+      {subscriptionSuccess && (
+        <SuccessModal onClose={() => setSubscriptionSuccess(false)} />
+      )}
     </FooterWrapper>
   );
 }
