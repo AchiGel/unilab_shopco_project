@@ -18,19 +18,14 @@ export default function ProductColors({
     <ProductColorsLayout>
       <ProductDescription>Select Colors</ProductDescription>
       <ProductColorsSelectors>
-        {colors?.map((c, i) => {
-          if (c === "sky") {
-            c = "#2196f3";
-          }
-          return (
-            <ProductColorCircle
-              key={i}
-              $bgColor={c}
-              $active={colorChosen === c}
-              onClick={() => setColorChosen(c)}
-            />
-          );
-        })}
+        {colors?.map((c, i) => (
+          <ProductColorCircle
+            key={i}
+            $bgColor={c}
+            $active={colorChosen === c}
+            onClick={() => setColorChosen(c)}
+          />
+        ))}
       </ProductColorsSelectors>
     </ProductColorsLayout>
   );

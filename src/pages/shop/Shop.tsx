@@ -31,6 +31,8 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 export default function Shop() {
+  const categories = ["T-shirts", "Shorts", "Shirts", "Hoodie", "Jeans"];
+
   const sizes = [
     "XX-Small",
     "X-Small",
@@ -49,19 +51,58 @@ export default function Shop() {
     "red",
     "yellow",
     "orange",
-    "sky",
+    "skyblue",
     "violet",
     "pink",
     "white",
     "black",
   ];
 
+  const departments = ["casual", "formal", "party", "gym"];
+
+  const [colorChosen, setColorChosen] = useState("");
+  const [sizeChosen, setSizeChosen] = useState("");
+  const [categoryChosen, setCategoryChosen] = useState("");
+  const [departmentChosen, setDepartmentChosen] = useState("");
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, 500]);
+
+  const [appliedColor, setAppliedColor] = useState("");
+  const [appliedSize, setAppliedSize] = useState("");
+  const [appliedCategory, setAppliedCategory] = useState("");
+  const [appliedDepartment, setAppliedDepartment] = useState("");
+  const [appliedPriceRange, setAppliedPriceRange] = useState<[number, number]>([
+    0, 500,
+  ]);
+
   const [page, setPage] = useState(1);
 
-  const getProducts = async () => {
+  const getProducts = async ({
+    page,
+    color,
+    size,
+    category,
+    department,
+    priceRange,
+  }: {
+    page: number;
+    color?: string;
+    size?: string;
+    category?: string;
+    department?: string;
+    priceRange?: [number, number];
+  }) => {
     const url = new URL("https://6810c78327f2fdac2412be92.mockapi.io/products");
     url.searchParams.append("page", page.toString());
     url.searchParams.append("limit", "9");
+
+    if (color) url.searchParams.append("colors", color);
+    if (size) url.searchParams.append("sizes", size);
+    if (category) url.searchParams.append("category", category);
+    if (department) url.searchParams.append("department", department);
+    if (priceRange) {
+      url.searchParams.append("price_gte", priceRange[0].toString());
+      url.searchParams.append("price_lte", priceRange[1].toString());
+    }
 
     const response = await fetch(url);
     const data = await response.json();
@@ -73,9 +114,31 @@ export default function Shop() {
     error,
     isLoading,
   } = useQuery<ProductTypes[]>({
-    queryKey: ["products", page],
-    queryFn: getProducts,
+    queryKey: [
+      "products",
+      page,
+      appliedColor,
+      appliedSize,
+      appliedCategory,
+      appliedDepartment,
+    ],
+    queryFn: () =>
+      getProducts({
+        page,
+        color: appliedColor,
+        size: appliedSize,
+        category: appliedCategory,
+        department: appliedDepartment,
+      }),
   });
+
+  const handleApplyFilters = () => {
+    setAppliedColor(colorChosen);
+    setAppliedSize(sizeChosen);
+    setAppliedCategory(categoryChosen);
+    setAppliedDepartment(departmentChosen);
+    setAppliedPriceRange(priceRange);
+  };
 
   return (
     <DetailsPageWrapper>
@@ -87,26 +150,17 @@ export default function Shop() {
           </AsideFilterTitlesContainer>
           <SectionDevider />
           <AsideFilterCategories>
-            <AsideFilterTitlesContainer>
-              <AsideFilterCategory>T-shirts</AsideFilterCategory>
-              <img src="/images/arrow_open.png" alt="" />
-            </AsideFilterTitlesContainer>
-            <AsideFilterTitlesContainer>
-              <AsideFilterCategory>Shorts</AsideFilterCategory>
-              <img src="/images/arrow_open.png" alt="" />
-            </AsideFilterTitlesContainer>
-            <AsideFilterTitlesContainer>
-              <AsideFilterCategory>Shirts</AsideFilterCategory>
-              <img src="/images/arrow_open.png" alt="" />
-            </AsideFilterTitlesContainer>
-            <AsideFilterTitlesContainer>
-              <AsideFilterCategory>Hoodie</AsideFilterCategory>
-              <img src="/images/arrow_open.png" alt="" />
-            </AsideFilterTitlesContainer>
-            <AsideFilterTitlesContainer>
-              <AsideFilterCategory>Jeans</AsideFilterCategory>
-              <img src="/images/arrow_open.png" alt="" />
-            </AsideFilterTitlesContainer>
+            {categories.map((c, i) => (
+              <AsideFilterTitlesContainer
+                key={i}
+                onClick={() => setCategoryChosen(c)}
+              >
+                <AsideFilterCategory $active={categoryChosen === c}>
+                  {c}
+                </AsideFilterCategory>
+                <img src="/images/arrow_open.png" alt="" />
+              </AsideFilterTitlesContainer>
+            ))}
           </AsideFilterCategories>
           <SectionDevider />
 
@@ -125,12 +179,14 @@ export default function Shop() {
               <img src="/images/arrow-up.png" alt="" />
             </AsideFilterTitlesContainer>
             <ColorsFilterContainer>
-              {colors.map((c, i) => {
-                if (c === "sky") {
-                  c = "#2196f3";
-                }
-                return <ProductColorCircle key={i} $bgColor={c} />;
-              })}
+              {colors.map((c, i) => (
+                <ProductColorCircle
+                  $active={colorChosen === c}
+                  key={i}
+                  $bgColor={c}
+                  onClick={() => setColorChosen(c)}
+                />
+              ))}
             </ColorsFilterContainer>
           </AsideFilterContainer>
 
@@ -142,7 +198,13 @@ export default function Shop() {
             </AsideFilterTitlesContainer>
             <SizesFilterContainer>
               {sizes.map((s, i) => (
-                <ProductSizeBox key={i}>{s}</ProductSizeBox>
+                <ProductSizeBox
+                  onClick={() => setSizeChosen(s)}
+                  $active={sizeChosen === s}
+                  key={i}
+                >
+                  {s}
+                </ProductSizeBox>
               ))}
             </SizesFilterContainer>
           </AsideFilterContainer>
@@ -153,24 +215,19 @@ export default function Shop() {
             <img src="/images/arrow-up.png" alt="" />
           </AsideFilterTitlesContainer>
           <AsideFilterCategories>
-            <AsideFilterTitlesContainer>
-              <AsideFilterCategory>Casual</AsideFilterCategory>
-              <img src="/images/arrow_open.png" alt="" />
-            </AsideFilterTitlesContainer>
-            <AsideFilterTitlesContainer>
-              <AsideFilterCategory>Formal</AsideFilterCategory>
-              <img src="/images/arrow_open.png" alt="" />
-            </AsideFilterTitlesContainer>
-            <AsideFilterTitlesContainer>
-              <AsideFilterCategory>Party</AsideFilterCategory>
-              <img src="/images/arrow_open.png" alt="" />
-            </AsideFilterTitlesContainer>
-            <AsideFilterTitlesContainer>
-              <AsideFilterCategory>Gym</AsideFilterCategory>
-              <img src="/images/arrow_open.png" alt="" />
-            </AsideFilterTitlesContainer>
+            {departments.map((d, i) => (
+              <AsideFilterTitlesContainer
+                key={i}
+                onClick={() => setDepartmentChosen(d)}
+              >
+                <AsideFilterCategory $active={departmentChosen === d}>
+                  {d}
+                </AsideFilterCategory>
+                <img src="/images/arrow_open.png" alt="" />
+              </AsideFilterTitlesContainer>
+            ))}
           </AsideFilterCategories>
-          <ApplyButton>Apply Filter</ApplyButton>
+          <ApplyButton onClick={handleApplyFilters}>Apply Filter</ApplyButton>
         </AsideFilterBlock>
         <ProductsContainer>
           <CategoryContainer>
@@ -192,17 +249,18 @@ export default function Shop() {
             "Error fetching products"
           ) : (
             <ProductsContainerGrid>
-              {products?.map((p) => (
-                <Link key={p.id} to={`/products/${p.id}`}>
-                  <ProductCard
-                    name={p.name}
-                    price={p.price}
-                    oldPrice={p.oldPrice}
-                    discount={p.discount}
-                    rating={p.rating}
-                  />
-                </Link>
-              ))}
+              {Array.isArray(products) &&
+                products?.map((p) => (
+                  <Link key={p.id} to={`/products/${p.id}`}>
+                    <ProductCard
+                      name={p.name}
+                      price={p.price}
+                      oldPrice={p.oldPrice}
+                      discount={p.discount}
+                      rating={p.rating}
+                    />
+                  </Link>
+                ))}
             </ProductsContainerGrid>
           )}
           <SectionDevider />

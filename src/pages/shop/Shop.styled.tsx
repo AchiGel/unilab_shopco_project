@@ -28,12 +28,12 @@ export const AsideFilterCategories = styled.div`
   gap: 20px;
 `;
 
-export const AsideFilterCategory = styled.span`
-  color: rgba(0, 0, 0, 0.6);
+export const AsideFilterCategory = styled.span<{ $active: boolean }>`
+  color: ${(props) => (props.$active ? "#000" : "rgba(0, 0, 0, 0.6)")};
   font-family: "Satoshi Variable";
   font-size: 16px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: ${(props) => (props.$active ? "500" : "400")};
   line-height: normal;
 `;
 
