@@ -20,6 +20,7 @@ import ProductGalery from "../productGalery/ProductGalery";
 import ProductSizes from "../productSizes/ProductSizes";
 import { FeedbackRating } from "../feedbacks/Feedbacks.styled";
 import starImage from "/images/Star.svg";
+import { useCartStore } from "../../store/cartStore";
 
 export default function ProductSectionComponent({
   name,
@@ -31,15 +32,26 @@ export default function ProductSectionComponent({
   colors,
   sizes,
 }: ProductTypes) {
-  const [cartItems, setCartItems] = useState<ProductTypes[]>([]);
+  const cartItems = useCartStore((state) => state.cartItems);
+  const setCartItems = useCartStore((state) => state.setCartItems);
+
   const [sizeChosen, setSizeChosen] = useState<string>("medium");
   const [colorChosen, setColorChosen] = useState<string>("white");
 
   const handleAddToCart = (quantity: number) => {
-    setCartItems((prev) => [
-      ...prev,
-      { name, price, quantity, sizeChosen, colorChosen },
-    ]);
+    setCartItems({
+      name,
+      price,
+      discount,
+      oldPrice,
+      description,
+      colors,
+      sizes,
+      rating,
+      quantity,
+      sizeChosen,
+      colorChosen,
+    });
   };
 
   useEffect(() => {

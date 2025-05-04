@@ -51,7 +51,7 @@ export default function LogIn() {
       const token = Math.random().toString(36).substring(2);
       login(matchedUser, token);
 
-      const expirationTime = 60 * 1000;
+      const expirationTime = 5 * 60 * 1000;
       setTimeout(() => {
         logout();
         alert("Session expired. You’ve been logged out.");
