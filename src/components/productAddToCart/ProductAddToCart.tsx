@@ -5,6 +5,8 @@ import {
   ProductAddToCartQuantity,
   ProductAddToCartQuantityButtons,
 } from "./ProductAddToCart.styled";
+import { useAuthStore } from "../../store/authStore";
+import { useNavigate } from "react-router-dom";
 
 export default function ProductAddToCart({
   handleAddToCart,
@@ -12,6 +14,14 @@ export default function ProductAddToCart({
   handleAddToCart: (quantity: number) => void;
 }) {
   const [items, setItems] = useState<number>(1);
+  const token = useAuthStore((state) => state.token);
+  const navigate = useNavigate();
+
+  const handleCart = (items: number) => {
+    if (!token) navigate("/login");
+
+    handleAddToCart(items);
+  };
   return (
     <ProductAddToCartLayout>
       <ProductAddToCartQuantity>
@@ -27,7 +37,7 @@ export default function ProductAddToCart({
           onClick={() => setItems((prev) => prev + 1)}
         />
       </ProductAddToCartQuantity>
-      <ProductAddToCartButton onClick={() => handleAddToCart(items)}>
+      <ProductAddToCartButton onClick={() => handleCart(items)}>
         Add to Cart
       </ProductAddToCartButton>
     </ProductAddToCartLayout>

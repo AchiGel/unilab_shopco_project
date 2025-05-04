@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   SignUpPageLayout,
   SignUpPageContainer,
@@ -19,6 +19,7 @@ import {
 } from "../signUp/SignUp.styled";
 import { ForgotPass } from "./Login.styled";
 import { useForm } from "react-hook-form";
+import { useAuthStore } from "../../store/authStore";
 
 type LogInFormValues = {
   email: string;
@@ -32,8 +33,35 @@ export default function LogIn() {
     formState: { errors },
   } = useForm<LogInFormValues>();
 
+  const login = useAuthStore((s) => s.login);
+  const logout = useAuthStore((s) => s.logout);
+  const navigate = useNavigate();
+
   const onSubmit = (data: LogInFormValues) => {
-    console.log("Login Form data:", data);
+    const storedUsers = JSON.parse(
+      localStorage.getItem("registered-users") || "[]"
+    );
+
+    const matchedUser = storedUsers.state.users.find(
+      (user: LogInFormValues) =>
+        user.email === data.email && user.password === data.password
+    );
+
+    if (matchedUser) {
+      const token = Math.random().toString(36).substring(2);
+      login(matchedUser, token);
+
+      const expirationTime = 60 * 1000;
+      setTimeout(() => {
+        logout();
+        alert("Session expired. You’ve been logged out.");
+        navigate("/login");
+      }, expirationTime);
+
+      navigate("/");
+    } else {
+      alert("Invalid email or password");
+    }
   };
 
   return (

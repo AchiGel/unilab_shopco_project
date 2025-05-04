@@ -18,6 +18,7 @@ import Cart from "./pages/cart/Cart.tsx";
 import Shop from "./pages/shop/Shop.tsx";
 import WriteReview from "./pages/writeReview/WriteReview.tsx";
 import Success from "./pages/success/Success.tsx";
+import ProtectedRoute from "./components/ProtectedRoute.tsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -28,7 +29,14 @@ const router = createBrowserRouter(
       <Route path="/signUp" element={<SignUp />} />
       <Route path="/logIn" element={<LogIn />} />
       <Route path="/products/:id" element={<ProductDetail />} />
-      <Route path="/cart" element={<Cart />} />
+      <Route
+        path="/cart"
+        element={
+          <ProtectedRoute>
+            <Cart />
+          </ProtectedRoute>
+        }
+      />
       <Route path="/shop" element={<Shop />} />
       <Route path="/success" element={<Success />} />
     </Route>
