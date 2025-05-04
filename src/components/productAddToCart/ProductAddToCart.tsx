@@ -6,7 +6,11 @@ import {
   ProductAddToCartQuantityButtons,
 } from "./ProductAddToCart.styled";
 
-export default function ProductAddToCart() {
+export default function ProductAddToCart({
+  handleAddToCart,
+}: {
+  handleAddToCart: (quantity: number) => void;
+}) {
   const [items, setItems] = useState<number>(1);
   return (
     <ProductAddToCartLayout>
@@ -23,7 +27,9 @@ export default function ProductAddToCart() {
           onClick={() => setItems((prev) => prev + 1)}
         />
       </ProductAddToCartQuantity>
-      <ProductAddToCartButton>Add to Cart</ProductAddToCartButton>
+      <ProductAddToCartButton onClick={() => handleAddToCart(items)}>
+        Add to Cart
+      </ProductAddToCartButton>
     </ProductAddToCartLayout>
   );
 }

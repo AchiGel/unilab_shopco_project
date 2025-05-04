@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   ProductSection,
   ProductInfo,
@@ -28,6 +29,22 @@ export default function ProductSectionComponent({
   colors,
   sizes,
 }: ProductTypes) {
+  const [cartItems, setCartItems] = useState<ProductTypes[]>([]);
+  const [sizeChosen, setSizeChosen] = useState<string>("medium");
+  const [colorChosen, setColorChosen] = useState<string>("white");
+
+  const handleAddToCart = (quantity: number) => {
+    setCartItems((prev) => [
+      ...prev,
+      { name, price, quantity, sizeChosen, colorChosen },
+    ]);
+  };
+
+  useEffect(() => {
+    console.log(cartItems);
+    localStorage.setItem("product", JSON.stringify(cartItems));
+  }, [cartItems]);
+
   return (
     <ProductSection>
       <ProductGalery />
@@ -41,11 +58,19 @@ export default function ProductSectionComponent({
         </ProductPriceContainer>
         <ProductDescription>{description}</ProductDescription>
         <SectionDevider />
-        <ProductColors colors={colors} />
+        <ProductColors
+          colorChosen={colorChosen}
+          colors={colors}
+          setColorChosen={setColorChosen}
+        />
         <SectionDevider />
-        <ProductSizes sizes={sizes} />
+        <ProductSizes
+          sizeChosen={sizeChosen}
+          sizes={sizes}
+          setSizeChosen={setSizeChosen}
+        />
         <SectionDevider />
-        <ProductAddToCart />
+        <ProductAddToCart handleAddToCart={handleAddToCart} />
       </ProductInfo>
     </ProductSection>
   );

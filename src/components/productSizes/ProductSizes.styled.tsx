@@ -10,15 +10,15 @@ export const ProductSizesSelectors = styled.div`
   gap: 12px;
 `;
 
-export const ProductSizeBox = styled.span`
+export const ProductSizeBox = styled.span<{ $active: boolean }>`
   display: inline-block;
   padding: 12px 24px;
-  color: rgba(0, 0, 0, 0.6);
+  color: ${(props) => (props.$active ? "#f0f0f0" : "rgba(0, 0, 0, 0.6)")};
   font-family: "Satoshi Variable";
   font-size: 16px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: ${(props) => (props.$active ? "500" : "400")};
   line-height: normal;
   border-radius: 62px;
-  background-color: #f0f0f0;
+  background-color: ${(props) => (props.$active ? "#000" : "#f0f0f0")};
 `;

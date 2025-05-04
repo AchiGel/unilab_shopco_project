@@ -30,8 +30,6 @@ export default function ReviewsSection({
 }) {
   const [sectionToShow, setSectionToShow] = useState("reviews");
 
-  console.log(sectionToShow);
-
   const formatDate = (date: string) => {
     const isoDate = date;
     const newDate = new Date(isoDate);
