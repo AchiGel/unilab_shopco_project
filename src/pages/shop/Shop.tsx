@@ -29,7 +29,7 @@ import {
 import ProductCard from "../../components/productCard/ProductCard";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-
+// import Slider from "@mui/material/Slider";
 export default function Shop() {
   const categories = ["T-shirts", "Shorts", "Shirts", "Hoodie", "Jeans"];
 
@@ -64,15 +64,15 @@ export default function Shop() {
   const [sizeChosen, setSizeChosen] = useState("");
   const [categoryChosen, setCategoryChosen] = useState("");
   const [departmentChosen, setDepartmentChosen] = useState("");
-  const [priceRange, setPriceRange] = useState<[number, number]>([0, 500]);
+  // const [priceRange, setPriceRange] = useState<[number, number]>([0, 500]);
 
   const [appliedColor, setAppliedColor] = useState("");
   const [appliedSize, setAppliedSize] = useState("");
   const [appliedCategory, setAppliedCategory] = useState("");
   const [appliedDepartment, setAppliedDepartment] = useState("");
-  const [appliedPriceRange, setAppliedPriceRange] = useState<[number, number]>([
-    0, 500,
-  ]);
+  // const [appliedPriceRange, setAppliedPriceRange] = useState<[number, number]>([
+  //   0, 500,
+  // ]);
 
   const [page, setPage] = useState(1);
 
@@ -82,14 +82,12 @@ export default function Shop() {
     size,
     category,
     department,
-    priceRange,
   }: {
     page: number;
     color?: string;
     size?: string;
     category?: string;
     department?: string;
-    priceRange?: [number, number];
   }) => {
     const url = new URL("https://6810c78327f2fdac2412be92.mockapi.io/products");
     url.searchParams.append("page", page.toString());
@@ -99,10 +97,6 @@ export default function Shop() {
     if (size) url.searchParams.append("sizes", size);
     if (category) url.searchParams.append("category", category);
     if (department) url.searchParams.append("department", department);
-    if (priceRange) {
-      url.searchParams.append("price_gte", priceRange[0].toString());
-      url.searchParams.append("price_lte", priceRange[1].toString());
-    }
 
     const response = await fetch(url);
     const data = await response.json();
@@ -137,7 +131,7 @@ export default function Shop() {
     setAppliedSize(sizeChosen);
     setAppliedCategory(categoryChosen);
     setAppliedDepartment(departmentChosen);
-    setAppliedPriceRange(priceRange);
+    // setAppliedPriceRange(priceRange);
   };
 
   return (
@@ -169,6 +163,20 @@ export default function Shop() {
               <AsideFilterTitles>Price</AsideFilterTitles>
               <img src="/images/arrow-up.png" alt="" />
             </AsideFilterTitlesContainer>
+            {/* <div style={{ padding: "0 1rem" }}>
+              <Slider
+                value={priceRange}
+                onChange={(_, newValue) =>
+                  setPriceRange(newValue as [number, number])
+                }
+                valueLabelDisplay="auto"
+                min={0}
+                max={500}
+              />
+              <div>
+                ${priceRange[0]} - ${priceRange[1]}
+              </div>
+            </div> */}
           </AsideFilterContainer>
 
           <SectionDevider />
