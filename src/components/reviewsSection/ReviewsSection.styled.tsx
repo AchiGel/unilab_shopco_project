@@ -9,20 +9,21 @@ export const ReviewsNavLinks = styled.ul`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: 24px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   margin-bottom: 24px;
 `;
 
-export const ReviewsNavLink = styled.li`
-  color: rgba(0, 0, 0, 0.6);
+export const ReviewsNavLink = styled.li<{ $section: boolean }>`
+  color: ${(props) => (props.$section ? "#000" : "rgba(0, 0, 0, 0.6)")};
   font-family: "Satoshi Variable";
   font-size: 20px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: ${(props) => (props.$section ? "500" : "400")};
   line-height: 22px; /* 110% */
   flex: 0 1 30%;
   text-align: center;
+  border-bottom: ${(props) => (props.$section ? "2px solid black" : "none")};
+  padding-bottom: 24px;
   @media (max-width: 768px) {
     font-size: 16px;
   }

@@ -27,6 +27,7 @@ export type ProductTypes = {
   id?: string;
   sizes?: string[];
   colors?: string[];
+  department?: string;
 };
 
 export default function NewArrivals() {

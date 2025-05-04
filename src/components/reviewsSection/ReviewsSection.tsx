@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { FeedbackType } from "../feedbacks/Feedbacks";
 import { FeedbackAuthor, FeedbackComment } from "../feedbacks/Feedbacks.styled";
 import {
@@ -27,6 +28,10 @@ export default function ReviewsSection({
 }: {
   reviews?: FeedbackType[];
 }) {
+  const [sectionToShow, setSectionToShow] = useState("reviews");
+
+  console.log(sectionToShow);
+
   const formatDate = (date: string) => {
     const isoDate = date;
     const newDate = new Date(isoDate);
@@ -44,42 +49,66 @@ export default function ReviewsSection({
     <ReviewsSectionWrapper>
       <nav>
         <ReviewsNavLinks>
-          <ReviewsNavLink>Product Details</ReviewsNavLink>
-          <ReviewsNavLink>Rating & Reviews</ReviewsNavLink>
-          <ReviewsNavLink>FAQs</ReviewsNavLink>
+          <ReviewsNavLink
+            $section={sectionToShow === "details"}
+            onClick={() => setSectionToShow("details")}
+          >
+            Product Details
+          </ReviewsNavLink>
+          <ReviewsNavLink
+            $section={sectionToShow === "reviews"}
+            onClick={() => setSectionToShow("reviews")}
+          >
+            Rating & Reviews
+          </ReviewsNavLink>
+          <ReviewsNavLink
+            $section={sectionToShow === "faqs"}
+            onClick={() => setSectionToShow("faqs")}
+          >
+            FAQs
+          </ReviewsNavLink>
         </ReviewsNavLinks>
       </nav>
-      <AllReviews>
-        <AllReviewsTitle>
-          All Reviews <ReviewsQuantity>({reviews?.length})</ReviewsQuantity>
-        </AllReviewsTitle>
-        <WriteReviews>
-          <FiltrationButton />
-          <SortingButton>Latest</SortingButton>
-          <WriteButton>Write a Review</WriteButton>
-        </WriteReviews>
-      </AllReviews>
-      <ReviewsGridContainer>
-        {reviews?.map((r) => (
-          <ReviewsGridCard key={r.id}>
-            <ReviewsCardStarsContainer>
-              <ReviewsCardStars>
-                {[...Array(r.rating)].map((_star, i) => (
-                  <img key={i} src={starImage} alt="" />
-                ))}
-              </ReviewsCardStars>
-              <ReviewsCardStarsMore />
-            </ReviewsCardStarsContainer>
-            <ReviewsCardText>
-              <FeedbackAuthor>{`${r.name.split(" ")[0]} ${r.name
-                .split(" ")[1]
-                ?.charAt(0)}.`}</FeedbackAuthor>
-              <FeedbackComment>{r.comment}</FeedbackComment>
-            </ReviewsCardText>
-            <ReviewsCardDate>{formatDate(r.createdAt)}</ReviewsCardDate>
-          </ReviewsGridCard>
-        ))}
-      </ReviewsGridContainer>
+      {sectionToShow === "reviews" ? (
+        <div>
+          <AllReviews>
+            <AllReviewsTitle>
+              All Reviews <ReviewsQuantity>({reviews?.length})</ReviewsQuantity>
+            </AllReviewsTitle>
+            <WriteReviews>
+              <FiltrationButton />
+              <SortingButton>Latest</SortingButton>
+              <WriteButton>Write a Review</WriteButton>
+            </WriteReviews>
+          </AllReviews>
+          <ReviewsGridContainer>
+            {Array.isArray(reviews) &&
+              reviews?.map((r) => (
+                <ReviewsGridCard key={r.id}>
+                  <ReviewsCardStarsContainer>
+                    <ReviewsCardStars>
+                      {[...Array(r.rating)].map((_star, i) => (
+                        <img key={i} src={starImage} alt="" />
+                      ))}
+                    </ReviewsCardStars>
+                    <ReviewsCardStarsMore />
+                  </ReviewsCardStarsContainer>
+                  <ReviewsCardText>
+                    <FeedbackAuthor>{`${r.name.split(" ")[0]} ${r.name
+                      .split(" ")[1]
+                      ?.charAt(0)}.`}</FeedbackAuthor>
+                    <FeedbackComment>{r.comment}</FeedbackComment>
+                  </ReviewsCardText>
+                  <ReviewsCardDate>{formatDate(r.createdAt)}</ReviewsCardDate>
+                </ReviewsGridCard>
+              ))}
+          </ReviewsGridContainer>
+        </div>
+      ) : sectionToShow === "details" ? (
+        <h3>This is Product Details section</h3>
+      ) : (
+        <h3>This is FAQs section</h3>
+      )}
     </ReviewsSectionWrapper>
   );
 }
