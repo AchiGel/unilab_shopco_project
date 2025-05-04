@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 export const useIsMobile = () => {
+  ///// ************ Custom Hook-ი ეკრანის ზომების დასადგენად ****************** /////
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   useEffect(() => {

@@ -31,6 +31,7 @@ export type ProductTypes = {
 };
 
 export default function NewArrivals() {
+  ///// ************ მოგვაქვს სერვერიდან ყველა პროდუქტი ****************** /////
   const {
     data: products,
     error,
@@ -40,12 +41,20 @@ export default function NewArrivals() {
     queryFn: getAllProducts,
   });
 
+  ///// ************ სთეითი ყველა პროდუქტის საჩვენებლად ****************** /////
+
   const [isExpended, setIsExpended] = useState(false);
+
+  ///// ************ საჩვენებელი პროდუქტების მასივი ****************** /////
   const visibleProducts = isExpended ? products : products?.slice(0, 4);
+
+  ///// ************ ყველა პროდუქტის ჩვენება ****************** /////
 
   const handleViewAll = () => {
     setIsExpended((prev) => !prev);
   };
+
+  ///// ************ ვიყენებთ custom hook-ს სლაიდერის ინტეგრაციისთვის მობილურზე ****************** /////
 
   const isMobile = useIsMobile();
 

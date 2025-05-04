@@ -16,9 +16,12 @@ type SubscribeForm = {
 };
 
 export default function Subscription() {
+  ///// ************ გლობალური სთეითი გამოწერებისთვის ****************** /////
   const setSubscriptionSuccess = useSubscriptionStore(
     (state) => state.setSubscriptionSuccess
   );
+
+  ///// ************ ფორმის მონაცემების დამუშავება ****************** /////
 
   const {
     register,

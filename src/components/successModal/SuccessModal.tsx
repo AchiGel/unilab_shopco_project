@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { ModalContent, SuccessModalLayout } from "./SuccessModal.styled";
 
 export default function SuccessModal({ onClose }: { onClose: () => void }) {
+  ///// ************ წარმატებული გამოწერისას მოდალის 3 წამით ამონათება ****************** /////
   useEffect(() => {
     const timer = setTimeout(() => {
       onClose();

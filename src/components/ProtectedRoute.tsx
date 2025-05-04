@@ -6,6 +6,7 @@ type Props = {
 };
 
 export default function ProtectedRoute({ children }: Props) {
+  ///// ************ მოგვაქვს ტოკენი რათა დავრწმუნდეთ მის არსებობაში ****************** /////
   const token = useAuthStore((state) => state.token);
 
   if (!token) {

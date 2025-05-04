@@ -35,6 +35,7 @@ const footerLinks = {
 };
 
 export default function Footer() {
+  ///// ************ ვიყენებთ გლობალურ სთეითს გამოწერისას წარმატების მოდალის ამოსანათებლად ****************** /////
   const subscriptionSuccess = useSubscriptionStore(
     (state) => state.subscriptionSuccess
   );

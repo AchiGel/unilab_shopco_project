@@ -29,7 +29,10 @@ export default function ReviewsSection({
 }: {
   reviews?: FeedbackType[];
 }) {
+  ///// ************ სთეითი შიდა გვერდების გადაშვილშსთვის ****************** /////
   const [sectionToShow, setSectionToShow] = useState("reviews");
+
+  ///// ************ ფუნქცია თარიღის ფორმატირებისთვის ****************** /////
 
   const formatDate = (date: string) => {
     const isoDate = date;

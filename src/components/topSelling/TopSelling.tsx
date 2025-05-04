@@ -14,7 +14,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Link } from "react-router-dom";
 
 export default function TopSelling() {
+  ///// ************ ვიყენებთ custom hook-ს სლაიდერის ინტეგრაციისთვის მობილურზე ****************** /////
+
   const isMobile = useIsMobile();
+
+  ///// ************ მოგვაქვს სერვერიდან ყველა პროდუქტი ****************** /////
+
   const {
     data: products,
     error,
@@ -24,9 +29,14 @@ export default function TopSelling() {
     queryFn: getAllProducts,
   });
 
+  ///// ************ სთეითი ყველა პროდუქტის საჩვენებლად ****************** /////
+
   const [isExpended, setIsExpended] = useState(false);
+
+  ///// ************ საჩვენებელი პროდუქტების მასივი ****************** /////
   const visibleProducts = isExpended ? products : products?.slice(5, 9);
 
+  ///// ************ ყველა პროდუქტის ჩვენება ****************** /////
   const handleViewAll = () => {
     setIsExpended((prev) => !prev);
   };

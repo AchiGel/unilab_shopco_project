@@ -17,11 +17,13 @@ export default function ProductAddToCart({
   const token = useAuthStore((state) => state.token);
   const navigate = useNavigate();
 
+  ///// ************ არაავტორიზებული მომხმარებელი გადაგვყავს ავტორიზაციის გვერდზე ****************** /////
   const handleCart = (items: number) => {
     if (!token) navigate("/login");
 
     handleAddToCart(items);
   };
+
   return (
     <ProductAddToCartLayout>
       <ProductAddToCartQuantity>
