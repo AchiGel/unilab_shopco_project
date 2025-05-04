@@ -16,11 +16,21 @@ export default function BurgerMenuNav({
       <BurgerMenuClose onClick={() => setBurgerOpen(false)} />
       <nav>
         <BurgerMenuNavList>
-          <li>Home</li>
-          <li>About </li>
-          <li>Services</li>
-          <li>Shop</li>
-          <li>Testimonials</li>
+          <Link to="/">
+            <li>Home</li>
+          </Link>
+          <Link to="/shop">
+            <li>About </li>
+          </Link>
+          <Link to="/shop">
+            <li>Services</li>
+          </Link>
+          <Link to="/shop">
+            <li>Shop</li>
+          </Link>
+          <Link to="/reviews">
+            <li>Testimonials</li>
+          </Link>
         </BurgerMenuNavList>
       </nav>
       <Link to="/signUp">

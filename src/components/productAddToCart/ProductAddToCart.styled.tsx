@@ -20,6 +20,10 @@ export const ProductAddToCartButton = styled.button`
   font-weight: 500;
   line-height: normal;
   cursor: pointer;
+  @media (max-width: 768px) {
+    font-size: 14px;
+    padding: 16px 0px;
+  }
 `;
 
 export const ProductAddToCartQuantity = styled.div`
@@ -36,6 +40,10 @@ export const ProductAddToCartQuantity = styled.div`
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  @media (max-width: 768px) {
+    min-width: fit-content;
+    padding: 14px 20px;
+  }
 `;
 
 export const ProductAddToCartQuantityButtons = styled.button<{
@@ -51,5 +59,11 @@ export const ProductAddToCartQuantityButtons = styled.button<{
   font-weight: 500;
   line-height: normal;
   background-image: url(${(props) =>props.$plus ? "/images/plus.png" : "/images/minus.png"});
+  background-position: center;
+  background-repeat: no-repeat;
   cursor: pointer;
+  @media (max-width: 768px) {
+    width: 16px;
+    height: 16px;
+  }
 `;

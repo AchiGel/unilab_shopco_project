@@ -37,7 +37,7 @@ export const HeroSection = styled.section`
     padding: 40px 16px;
     height: 853px;
     background-image: url("/images/Rectangle-mob.png");
-    background-position: center 45vh;
+    background-position: center 70vh;
     background-size: contain;
   }
 `;

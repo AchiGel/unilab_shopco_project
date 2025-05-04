@@ -8,6 +8,9 @@ export const ProductSizesSelectors = styled.div`
   display: flex;
   align-items: center;
   gap: 12px;
+  @media (max-width: 768px) {
+    gap: 8px;
+  }
 `;
 
 export const ProductSizeBox = styled.span<{ $active: boolean }>`
@@ -21,4 +24,8 @@ export const ProductSizeBox = styled.span<{ $active: boolean }>`
   line-height: normal;
   border-radius: 62px;
   background-color: ${(props) => (props.$active ? "#000" : "#f0f0f0")};
+  @media (max-width: 768px) {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
 `;

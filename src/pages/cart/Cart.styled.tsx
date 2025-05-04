@@ -8,6 +8,9 @@ export const ChosenItemsContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
+  @media (max-width: 768px) {
+    padding: 14px;
+  }
 `;
 
 export const CartSection = styled.section`
