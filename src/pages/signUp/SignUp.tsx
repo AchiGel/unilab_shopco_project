@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   BottomInputsContainer,
   ConfirmButton,
@@ -20,6 +20,7 @@ import {
   SignUpPageLayout,
   UpperInputsContainer,
 } from "./SignUp.styled";
+import { useRegisterStore } from "../../store/registerStore";
 
 type SignUpFormValues = {
   firstName: string;
@@ -30,14 +31,23 @@ type SignUpFormValues = {
 };
 
 export default function SignUp() {
+  const addUser = useRegisterStore((state) => state.addUser);
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<SignUpFormValues>();
 
   const onSubmit = (data: SignUpFormValues) => {
-    console.log("Form data:", data);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { agree, ...userData } = data;
+    addUser(userData);
+    console.log("Registered user:", userData);
+    reset();
+    navigate("/success");
   };
 
   return (
